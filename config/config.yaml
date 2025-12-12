@@ -1,0 +1,53 @@
+# System Basics
+name: "VICENT AI TRADING SYSTEM"
+version: "7.0"
+
+# Report Settings
+report_title: "Train 1"
+
+# Data Settings
+data_source: "sample_data/raw_data/XAUUSD.csv"
+tick_bar_size: 200
+
+# Feature Engineering Settings
+W_SHORT: 14
+W_LONG: 60
+W_TREND: 100
+correlation_threshold: 0.95
+
+# Targeting Settings
+atr_period: 14
+enableOptimization: true
+N_TRIALS: 500
+
+# Data Split Settings
+START_DATE: '2010-01-01'
+END_DATE: '2024-12-31'
+TRAIN_RATIO: 0.70  
+VAL_RATIO: 0.15 # The test ratio will be 1 - (TRAIN_RATIO + VAL_RATIO) 
+
+# Train Main Model Settings
+SEQ_LEN: 60
+BATCH_SIZE: 2048
+EPOCHS: 50 
+DROPOUT: 0.2
+LEARNING_RATE: 0.001
+
+# Meta Dataset Settings
+THRESHOLD: 0.05 # Minimum to be positive
+
+# Meta Model Settings
+RANDOM_STATE: 42
+TEST_SIZE: 0.2
+
+# Model Optimitzation
+OP_N_TRIALS: 500
+INITIAL_CAPITAL: 10000
+RISK_PER_TRADE: 0.0025
+N_MIN_TRADES: 40
+W_R: 3.0 # Return Weight
+W_PF: 1.5 # Profit Factor Weight
+W_WR: 1.0 # Win Rate Weight
+W_Stab: 2.0 # Stability Weight
+W_Act: 0.1 # Nº Trades Weight
+W_DD: 4.0 # Drawdown Penalitzation Weight

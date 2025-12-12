@@ -96,40 +96,41 @@ def main():
 
     # Data Wrangling
     verificate_data_source(data_source, tick_bar_size, CONFIG_PATH)
-    #data_wrangling(data_source, data_wrangling_path, tick_bar_size)
+    data_wrangling(data_source, data_wrangling_path, tick_bar_size)
 
     # Feature Enginiering
     verificate_feature_source(wlong, wshort, wtrend)
-    #feature_engineering(data_wrangling_path, feature_enginiering_path, tick_bar_size, wshort, wlong, wtrend, correlation_threshold)
+    feature_engineering(data_wrangling_path, feature_enginiering_path, tick_bar_size, wshort, wlong, wtrend, correlation_threshold)
     
     # Targeting
     verificate_target_source(atr_period, enableOptimization, n_trials)
-    #targeting(feature_enginiering_path, targeting_path, atr_period, enableOptimization, n_trials)
+    targeting(feature_enginiering_path, targeting_path, atr_period, enableOptimization, n_trials)
 
     # Data Split
     verificate_data_split_source(start_date, final_date, train_ratio, val_ratio)
-    #data_split(targeting_path, data_split_path, start_date, final_date, train_ratio, val_ratio)
+    data_split(targeting_path, data_split_path, start_date, final_date, train_ratio, val_ratio)
     
     # Preprocess
-    #preprocess(data_split_path, preprocess_path, train_ratio, val_ratio)
+    preprocess(data_split_path, preprocess_path, train_ratio, val_ratio)
 
     # Main Model Train
     verificate_main_train_source(seq_len, batch_size, epochs, dropout, learning_rate)
-    #main_model(preprocess_path, main_model_path, seq_len, batch_size, epochs, dropout, learning_rate)
+    main_model(preprocess_path, main_model_path, seq_len, batch_size, epochs, dropout, learning_rate)
 
     # Meta Dataset
     verificate_meta_dataset(threshold)
-    #meta_dataset(preprocess_path, meta_dataset_path, main_model_path, seq_len, threshold)
+    meta_dataset(preprocess_path, meta_dataset_path, main_model_path, seq_len, threshold)
     
     # Meta Model Train
     verificate_meta_train(random_state, test_size)
-    #meta_model(meta_dataset_path, meta_model_path, random_state, test_size)
+    meta_model(meta_dataset_path, meta_model_path, random_state, test_size)
 
     # Optimitzation
-    #model_optimitzation(main_model_path, meta_model_path, preprocess_path, data_split_path, preprocess_path, data_split_path, model_optimitzation_path, op_n_trials, initial_capital, risk_per_trade, seq_len, n_min_trades, weights)
+    model_optimitzation(main_model_path, meta_model_path, preprocess_path, data_split_path, preprocess_path, data_split_path, model_optimitzation_path, op_n_trials, initial_capital, risk_per_trade, seq_len, n_min_trades, weights)
 
     # Backtest
     backtester(main_model_path, meta_model_path, model_optimitzation_path, preprocess_path, data_split_path, preprocess_path, data_split_path, seq_len, initial_capital, risk_per_trade, backtest_path)
 
 if __name__ == "__main__":
+
     main()
